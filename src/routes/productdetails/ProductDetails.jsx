@@ -78,15 +78,20 @@ if(itemCounter > 1  ){
         </div>
         <div className="product-details__price">{productDetailsData?.productSizesAndQuantity[selectedVariant].price} CУМ</div>
         <div className="product-details__item">
-       <div className="product-details__info">
-         <CgRadioChecked/>
-       {productDetailsData?.productDescription_uz[0]}
-       </div>
-          <div className="product-details__info">
-            <CgRadioChecked/>
-            {productDetailsData?.productDescription_uz[1]}
-          </div>
+          {productDetailsData?.productDescription_uz[0] && (
+            <div className="product-details__info">
+              <CgRadioChecked />
+              {productDetailsData.productDescription_uz[0]}
+            </div>
+          )}
+          {productDetailsData?.productDescription_uz[1] && (
+            <div className="product-details__info">
+              <CgRadioChecked />
+              {productDetailsData.productDescription_uz[1]}
+            </div>
+          )}
         </div>
+
         <div className="product-details__counter">
           <div className="product-details__counterContainer">
           <h2 style={{fontWeight:"600",fontSize:"20px"}}>Cони:</h2>
