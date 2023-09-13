@@ -3,12 +3,14 @@ import './Contact.scss'
 import {FiFacebook, FiMapPin, FiPhoneCall, FiSend, FiYoutube} from "react-icons/fi";
 import {Link} from "react-router-dom";
 import email from "../../images/email.svg";
+import {useTranslation} from "react-i18next";
 
 
 const Contact = () => {
+  const {t} = useTranslation()
   return (
     <div className={'contact__container'}>
-    <h1>Биз билан боғланиш</h1>
+    <h1>{t('Биз билан боғланиш')}</h1>
       <ul className="contact__list">
         <li>
           <FiPhoneCall className="contact__icons" />
@@ -23,11 +25,11 @@ const Contact = () => {
         </li>
         <li>
           <FiMapPin  className="contact__icons"/>
-          Наманган вилояти , Давлатобод тумани , Дустлик Шох кучаси 109-уй
+          {t('Наманган вилояти , Давлатобод тумани , Дустлик Шох кучаси 109-уй')}
         </li>
       </ul>
       <div className={'contact_footer'}>
-        <b>Бизни кузатиб боринг</b>
+        <b>{t('Бизни кузатиб боринг')}</b>
         <div className="footer_follow_wrapper">
           <Link to="" className="contact_follow-links">
             <FiSend className="contact__follow-icons"/>

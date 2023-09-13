@@ -1,14 +1,18 @@
 import {useState, useEffect} from "react";
 import './Navbar.scss'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import { FiSearch,} from "react-icons/fi";
 import logos from "../../images/logos.svg"
 import Sidebar from "../../components/sidebar/Sidebar"
 import {Container} from "../../utils/Utils";
 import {instance} from "../../api/axios";
 import resultno from "../../images/resultno.png";
+import {useTranslation} from "react-i18next";
+const exceptionalRoutes = ["/login", "/admin"]
 
 const Navbar = ({showSidebar} ) => {
+  const localtion = useLocation()
+  const {t} = useTranslation()
   const [inputSearch, setInputSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [showNoResult, setShowNoResult] = useState(true);
@@ -34,7 +38,7 @@ const Navbar = ({showSidebar} ) => {
 console.log(searchResult)
 
 
-  return (
+  return  !exceptionalRoutes.includes(localtion.pathname) ? (
     <div className="navbar">
       <div className="navbar__main">
         <Container style={{textAlign:"center", margin:"auto"}}>
@@ -110,16 +114,16 @@ console.log(searchResult)
                 {showSidebar && <Sidebar />}
                 <ul className={'navbar_categories_menu-all'}>
                   <li className={'navbar_categories_menu'}>
-                    <Link to="/" className={'navbar_categories_item'}>Бош сахифа</Link>
+                    <Link to="/" className={'navbar_categories_item'}>{t("Бош сахифа")}</Link>
                   </li>
                   <li className={'navbar_categories_menu'}>
-                    <Link to="/Partner" className={'navbar_categories_item'}>Ҳамкорлар</Link>
+                    <Link to="/Partner" className={'navbar_categories_item'}>{t('Хамкорлар')}</Link>
                   </li>
                   <li className={'navbar_categories_menu'}>
-                    <Link to="/About" className={'navbar_categories_item'}>Биз ҳақимизда</Link>
+                    <Link to="/About" className={'navbar_categories_item'}>{t('Биз ҳақимизда')}</Link>
                   </li>
                   <li className={'navbar_categories_menu'}>
-                    <Link to="/Contact" className={'navbar_categories_item'}>Алоқа</Link>
+                    <Link to="/Contact" className={'navbar_categories_item'}>{t('Алоқа')}</Link>
                   </li>
                 </ul>
               </div>
@@ -128,6 +132,6 @@ console.log(searchResult)
         </Container>
       </div>
     </div>
-  )
+  ) : <></>
 }
 export default  Navbar

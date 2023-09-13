@@ -1,14 +1,17 @@
 import './Footer.scss'
 import { FiPhoneCall,FiMail,FiMapPin,FiSend,FiFacebook,FiYoutube } from "react-icons/fi";
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import logo from "../../images/logo.svg";
-
+import {useTranslation} from "react-i18next";
+const exceptionalRoutes = ["/login", "/admin"]
 
 
 
 const  Footer = () => {
-  return (
+  const {t} = useTranslation()
+  const localtion = useLocation()
+  return   !exceptionalRoutes.includes(localtion.pathname) ?(
     <div className="footer">
       <div className={'footer_primary'}>
         <div className="footer_title_group">
@@ -17,8 +20,8 @@ const  Footer = () => {
              <FiMapPin className="footer_icons"/>
            </div>
             <div>
-              <strong className="footer_title">Бизнинг манзил</strong>
-              <p className="footer_text">Наманган вилояти , Давлатобод тумани , Дустлик Шох кучаси 109-уй</p>
+              <strong className="footer_title">{t('Бизнинг манзил')}</strong>
+              <p className="footer_text">{t('Наманган вилояти , Давлатобод тумани , Дустлик Шох кучаси 109-уй')}</p>
             </div>
           </div>
           <div className="footer_secondary">
@@ -27,7 +30,7 @@ const  Footer = () => {
             </div>
             <div>
               <b className="footer_title"
-                 style={{whiteSpace:"nowrap"}}>Биз билан боғланинг</b>
+                 style={{whiteSpace:"nowrap"}}>{t('Биз билан боғланинг')}</b>
               <div className="footer_text">
                 +998 91 186 00 85</div>
             </div>
@@ -37,7 +40,7 @@ const  Footer = () => {
               <FiMail className="footer_icons" />
             </div>
             <div>
-              <strong className="footer_title">Электрон манзил</strong>
+              <strong className="footer_title">{t('Электрон манзил')}</strong>
               <div className="footer_text">erkinjon.hodjaev@gmail.com</div>
             </div>
           </div>
@@ -47,11 +50,10 @@ const  Footer = () => {
          <div className="footer_main_logo">
            <img src={logo}/>
            <div className="footer_main-text">
-             Қолип тайёрлаш учун барча асбоблар, қолип бутловчи қисмлари ва аксессуарлари, қолип учун киёвий моддалар, силлиқлаш
-             ва сайқаллаш асбоблари, абразив тошлар, CNC дастгохлари, Термопластавтоматлар ва хоказолар.
+             {t('Қолип тайёрлаш учун барча асбоблар, қолип бутловчи қисмлари ва аксессуарлари, қолип учун киёвий моддалар, силлиқлаш  ва сайқаллаш асбоблари, абразив тошлар, CNC дастгохлари, Термопластавтоматлар ва хоказолар.')}
            </div>
            <div className="footer_main-follow">
-            <b className="footer_title" style={{whiteSpace:"nowrap"}}>Бизни кузатиб боринг</b>
+            <b className="footer_title" style={{whiteSpace:"nowrap"}}>{t('Бизни кузатиб боринг')}</b>
              <div className="footer_follow_wrapper">
             <Link to="" className="footer_follow-links">
               <FiSend className="footer_follow-icons"/>
@@ -69,21 +71,21 @@ const  Footer = () => {
           <div className="footer_main_info">
             <div>
               <strong className="footer_title">
-                Фойдали ҳаволалар
+                {t('Фойдали ҳаволалар')}
               </strong>
               <div className="footer_line"></div>
             </div>
             <ul className="footer_link">
-              <Link className="footer_title_link">Бош сахифа</Link>
-              <Link className="footer_title_link">Ҳамкорлар</Link>
-              <Link className="footer_title_link">Биз ҳақимизда</Link>
-              <Link className="footer_title_link">Алоқа</Link>
+              <Link className="footer_title_link">{t('Бош сахифа')}</Link>
+              <Link className="footer_title_link">{t('Хамкорлар')}</Link>
+              <Link className="footer_title_link">{t('Биз ҳақимизда')}</Link>
+              <Link className="footer_title_link">{t('Алоқа')}</Link>
             </ul>
           </div>
           <div className="footer_main_info">
             <div>
               <strong className="footer_title">
-                Таклифлар учун
+                {t('Таклифлар учун')}
               </strong>
               <div className="footer_line"></div>
             </div>
@@ -98,6 +100,6 @@ const  Footer = () => {
         <div className="footer_copyright"></div>
       </div>
     </div>
-  )
+  ) :<></>
 }
 export default Footer

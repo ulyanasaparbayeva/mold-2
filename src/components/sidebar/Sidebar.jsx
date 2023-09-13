@@ -28,7 +28,7 @@ const Sidebar = (showSidebar ) => {
         {
           categoryData?.mainCategory_ru ? categoryData.mainCategory_ru.map((mainCategoryItem, index) =>
             <li  className={'sidebar__menu-item'} key={index}>
-              <Link >
+              <Link to={`/maincategory/${mainCategoryItem}`} style={{textDecoration:"none"}}>
                 {mainCategoryItem}
                 <FiChevronRight/>
               </Link>
@@ -37,7 +37,7 @@ const Sidebar = (showSidebar ) => {
                   categoryData.productSubCategories_ru && categoryData.productSubCategories_ru[index] ?
                     categoryData.productSubCategories_ru[index].map((subCategoryItem, subIndex) => (
                      subCategoryItem ?
-                       <Link >{subCategoryItem}</Link>
+                       <Link to={`/subcategory/${subCategoryItem}`} key={subIndex}>{subCategoryItem}</Link>
                        : <></>
                     )) : 'Loading...'
                 }
@@ -52,5 +52,5 @@ const Sidebar = (showSidebar ) => {
 export default Sidebar
 
 {/*
-to={`/maincategory/${mainCategoryItem}`} style={{textDecoration:"none"}}
-to={`/maincategory/${mainCategoryItem}`} key={subIndex} qilnmaganligi sababli link olib qo'yilgan   */}
+
+  */}
