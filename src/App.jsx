@@ -8,7 +8,8 @@ import {useEffect,useState} from "react";
 
 import {ToastContainer} from "react-toastify";
 import Routes from "./routes";
-
+import Cart from "./cart/Cart";
+import './App.scss'
 
 
 function App() {
@@ -29,13 +30,14 @@ function App() {
 
 
   return (
-    <>
+    <div className="app">
       <SubNav/>
       <Navbar showSidebar={showSidebar} />
+      <Cart/>
       <Routes/>
       <ToastContainer limit={2}/>
       <Footer/>
-    </>
+    </div>
   );
 }
 

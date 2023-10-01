@@ -5,16 +5,25 @@ import { instance } from '../../api/axios';
 import './ProductDetails.scss'
 import {FiChevronRight,FiShoppingCart} from "react-icons/fi";
 import {CgRadioChecked} from "react-icons/cg";
-
+import {useDispatch} from "react-redux";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 const ProductDetails = () => {
+  const dispatch = useDispatch()
+
+
   const [selectedVariant ,setSelectedVariant] = useState(0)
   const [productDetailsData, setProductDetailsData] = useState(null);
   let productDataInUrl = useParams();
   const [activeImagesNumber, setActiveImagesNumber] = useState(0);
  const [itemCounter, setItemCounter] = useState(1);
+
+
+
+
 
 
   useEffect(() => {
@@ -23,9 +32,7 @@ const ProductDetails = () => {
       .catch(err => console.log(err))
   }, [productDataInUrl.id]);
 
-  console.log(productDetailsData)
 
- console.log(activeImagesNumber)
 
 
 
@@ -41,6 +48,24 @@ if(itemCounter > 1  ){
       setItemCounter(itemCounter + 1)
     }
   }
+
+
+  function addToCart(product) {
+  const {productSizesAndQuantity, ...rest} = product;
+    rest.selectedType = productSizesAndQuantity[selectedVariant];
+    rest.count = itemCounter;
+    rest.totalPrice = productDetailsData.productSizesAndQuantity?.[selectedVariant].price * itemCounter
+    console.log(rest)
+    dispatch({ type: "ADD_TO_CART", product: rest });
+    toast.success('Маҳсулот саватга қўшилди!', {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000
+    });
+  }
+
+
+
+
 
 
   return (
@@ -109,7 +134,7 @@ if(itemCounter > 1  ){
           <h2>.</h2>
             <br/>
             <br/>
-            <button>
+            <button style={{cursor:"pointer"}} onClick={() => addToCart(productDetailsData)}>
               <FiShoppingCart/>
             <span>Саватга қўшиш</span>
             </button>

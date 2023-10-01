@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import './ProductCarousel.scss';
 import { Navigation, Autoplay } from 'swiper/modules';
 import ProductCard from '../product-card/ProductCard';
-import { Link } from 'react-router-dom';
+
 
 const ProductCarousel = ({categoryData}) => {
   return (

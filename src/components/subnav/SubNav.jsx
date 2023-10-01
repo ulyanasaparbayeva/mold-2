@@ -1,3 +1,4 @@
+import {useDispatch} from "react-redux";
 import  flag from "../../images/flag.svg";
 import  flags from "../../images/flags.png";
 import i18n from "../../language/118next";
@@ -11,11 +12,13 @@ const exceptionalRoutes = ["/login","/admin"]
 
 
 const SubNav = () => {
+  const dispatch = useDispatch()
   const localtion = useLocation()
-  const [laungeState, setlaungeState] = useState(localStorage.getItem("lang") || "uz")
+  const [laungeState, setLaungeState] = useState(localStorage.getItem("lang") || "uz")
   function changeLang(selectedLangCode) {
     i18n.changeLanguage(selectedLangCode);
-    setlaungeState(selectedLangCode)
+    setLaungeState(selectedLangCode)
+    dispatch({language_code:selectedLangCode, type:"CHANGE_LANGUAGE"})
   }
   const [selectedImg, setSelectedImg] = useState(localStorage.getItem('selectedImg') || "uz");
 

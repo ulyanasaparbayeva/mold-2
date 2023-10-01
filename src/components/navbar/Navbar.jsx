@@ -35,7 +35,7 @@ const Navbar = ({showSidebar} ) => {
       });
   }, [inputSearch]);
 
-console.log(searchResult)
+
 
 
   return  !exceptionalRoutes.includes(localtion.pathname) ? (
